@@ -1,0 +1,143 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+Instantiates the driver object
+```{r}
+drv <- DBI::dbDriver("PostgreSQL")
+```
+
+Creates and opens a connection to the database implemented by the driver drv.
+Connection string should be specified with parameters like user, password, dbname, host, port, tty and options
+```{r}
+con <- DBI::dbConnect(drv, host="localhost", 
+                      port="5432", dbname="FIND", 
+                      user="postgres", password="albamia") 
+```
+
+Provides List of connections handled by the driver
+```{r}
+DBI::dbListConnections(drv)
+```
+
+dbGetInfo(dbObject, ...) and summary(dbObject) returns information 
+about the dbObject (driver, connection or resultSet)
+```{r}
+DBI::dbGetInfo(drv)
+summary(con)
+```
+
+List of all tables in DB
+```{r}
+DBI::dbListTables(con)
+```
+
+Run an SQL statement by creating first a resultSet object.
+Submits one statement to the database
+```{r}
+DBI::dbGetQuery(con, "SET NAMES 'utf8'")
+```
+
+Summary table total number of fish samples containing in FIND, with start and end date of the series
+```{sql connection=con}
+SELECT 
+  MIN (s."Sample_Data") AS "start date",
+  MAX (s."Sample_Data") AS "end date",
+  COUNT (s."ITT") AS "n of fish samples",
+  /*COUNT (s."ZOO) AS "n of zooplankton samples",
+  COUNT (s."PHY) AS "n of phytoplankton samples",
+  -- COUNT (s."COM) AS "n of ",
+  COUNT (s."BEN) AS "n of benthos samples",
+  COUNT (s."CHI) AS "n of chemistry samples",
+  COUNT (s."MACRO) AS "n of macrophytes samples",
+  -- COUNT (s."MICRO) AS "n of samples of ",*/
+  l."Lake_Name"
+FROM
+  public."COM_Samples" AS s
+  INNER JOIN public."COM_Lakes" AS l ON (s."ID_Lake" = l."ID_Lake")
+WHERE
+  s."ITT" = 1
+GROUP BY
+  l."Lake_Name"
+```
+
+Summary table total number of zooplankton samples containing in FIND, with start and end date of the series
+```{sql connection=con}
+SELECT 
+  MIN (s."Sample_Data") AS "start date",
+  MAX (s."Sample_Data") AS "end date",
+  COUNT (s."ZOO") AS "n of zooplankton samples",
+  l."Lake_Name"
+FROM
+  public."COM_Samples" AS s
+  INNER JOIN public."COM_Lakes" AS l ON (s."ID_Lake" = l."ID_Lake")
+WHERE
+  s."ZOO" = 1
+GROUP BY
+  l."Lake_Name"
+```
+
+Summary table total number of zooplankton samples containing in FIND, with start and end date of the series
+```{sql connection=con}
+SELECT 
+  MIN (s."Sample_Data") AS "start date",
+  MAX (s."Sample_Data") AS "end date",
+  COUNT (s."PHY") AS "n of phytoplankton samples",
+  l."Lake_Name"
+FROM
+  public."COM_Samples" AS s
+  INNER JOIN public."COM_Lakes" AS l ON (s."ID_Lake" = l."ID_Lake")
+WHERE
+  s."PHY" = 1
+GROUP BY
+  l."Lake_Name"
+```
+
+Summary table total number of zooplankton samples containing in FIND, with start and end date of the series
+```{sql connection=con}
+SELECT 
+  MIN (s."Sample_Data") AS "start date",
+  MAX (s."Sample_Data") AS "end date",
+  COUNT (s."BEN") AS "n of benthos samples",
+  l."Lake_Name"
+FROM
+  public."COM_Samples" AS s
+  INNER JOIN public."COM_Lakes" AS l ON (s."ID_Lake" = l."ID_Lake")
+WHERE
+  s."BEN" = 1
+GROUP BY
+  l."Lake_Name"
+```
+
+Summary table total number of zooplankton samples containing in FIND, with start and end date of the series
+```{sql connection=con}
+SELECT 
+  MIN (s."Sample_Data") AS "start date",
+  MAX (s."Sample_Data") AS "end date",
+  COUNT (s."CHI") AS "n of chemistry samples",
+  l."Lake_Name"
+FROM
+  public."COM_Samples" AS s
+  INNER JOIN public."COM_Lakes" AS l ON (s."ID_Lake" = l."ID_Lake")
+WHERE
+  s."CHI" = 1
+GROUP BY
+  l."Lake_Name"
+```
+
+Summary table total number of zooplankton samples containing in FIND, with start and end date of the series
+```{sql connection=con}
+SELECT 
+  MIN (s."Sample_Data") AS "start date",
+  MAX (s."Sample_Data") AS "end date",
+  COUNT (s."MACRO") AS "n of macrophytes samples",
+  l."Lake_Name"
+FROM
+  public."COM_Samples" AS s
+  INNER JOIN public."COM_Lakes" AS l ON (s."ID_Lake" = l."ID_Lake")
+WHERE
+  s."MACRO" = 1
+GROUP BY
+  l."Lake_Name"
+```

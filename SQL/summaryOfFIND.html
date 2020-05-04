@@ -4041,12 +4041,13 @@ div.tocify {
 ## $counter
 ## [1] 1</code></pre>
 <pre class="r"><code>summary(con)</code></pre>
-<pre><code>## &lt;PostgreSQLConnection:(42505,0)&gt; 
+<pre><code>## &lt;PostgreSQLConnection:(45018,0)&gt; 
 ##   User: postgres 
 ##   Host: localhost 
 ##   Dbname: FIND 
 ##   No resultSet available</code></pre>
-<p>List of all tables in DB</p>
+<div id="list-of-all-tables-in-db" class="section level3">
+<h3>List of all tables in DB</h3>
 <pre class="r"><code>DBI::dbListTables(con)</code></pre>
 <pre><code>##  [1] &quot;spatial_ref_sys&quot;               &quot;topology&quot;                     
 ##  [3] &quot;layer&quot;                         &quot;us_lex&quot;                       
@@ -4099,7 +4100,9 @@ div.tocify {
 <p>Run an SQL statement by creating first a resultSet object. Submits one statement to the database</p>
 <pre class="r"><code>DBI::dbGetQuery(con, &quot;SET NAMES &#39;utf8&#39;&quot;)</code></pre>
 <pre><code>## data frame with 0 columns and 0 rows</code></pre>
-<p>Summary table total number of fish samples containing in FIND, with start and end date of the series</p>
+</div>
+<div id="total-number-of-fish-samples-containing-in-find-with-start-and-end-date-of-the-series" class="section level3">
+<h3>Total number of fish samples containing in FIND, with start and end date of the series</h3>
 <pre class="r"><code>DBI::dbGetQuery(con, &quot;SET NAMES &#39;utf8&#39;&quot;)</code></pre>
 <pre><code>## data frame with 0 columns and 0 rows</code></pre>
 <pre class="r"><code>queryValueItt &lt;- DBI::dbSendQuery(conn = con, statement = paste(
@@ -4117,8 +4120,8 @@ GROUP BY
   l.\&quot;Lake_Name\&quot;&quot;));
 tblValueItt &lt;- DBI::fetch(queryValueItt, n = -1)
 DT::datatable(tblValueItt)</code></pre>
-<div id="htmlwidget-56587eca1fe3a38d80ab" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-56587eca1fe3a38d80ab">{"x":{"filter":"none","data":[["1","2","3","4","5"],["1988-01-28","1983-01-25","1981-05-04","1986-09-02","1994-02-15"],["1989-07-04","2004-06-09","1982-01-20","2000-11-08","1994-06-14"],[3,125,20,15,6],["Orta o Cusio","Maggiore o Verbano","Como o Lario","Candia","Mergozzo"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>start date<\/th>\n      <th>end date<\/th>\n      <th>n of fish samples<\/th>\n      <th>Lake_Name<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":3},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-d72f09d35c1d9ecb6c9d" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d72f09d35c1d9ecb6c9d">{"x":{"filter":"none","data":[["1","2","3","4","5"],["1988-01-28","1983-01-25","1981-05-04","1986-09-02","1994-02-15"],["1989-07-04","2004-06-09","1982-01-20","2000-11-08","1994-06-14"],[3,125,20,15,6],["Orta o Cusio","Maggiore o Verbano","Como o Lario","Candia","Mergozzo"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>start date<\/th>\n      <th>end date<\/th>\n      <th>n of fish samples<\/th>\n      <th>Lake_Name<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":3},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 <p>Summary table total number of zooplankton samples containing in FIND, with start and end date of the series</p>
 <pre class="r"><code>DBI::dbGetQuery(con, &quot;SET NAMES &#39;utf8&#39;&quot;)</code></pre>
 <pre><code>## data frame with 0 columns and 0 rows</code></pre>
@@ -4138,9 +4141,11 @@ GROUP BY
 ));
 tblValueZoo &lt;- DBI::fetch(queryValueZoo, n = -1)
 DT::datatable(tblValueZoo)</code></pre>
-<div id="htmlwidget-d359301a24636eb24319" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d359301a24636eb24319">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55"],["1946-09-10","1953-10-13","1959-07-16","1946-09-26","1951-12-11","1946-09-23","1977-03-03","1949-07-05","1977-02-11","1946-05-25","1966-08-02","1967-05-16","1980-03-27","1977-04-21","1946-09-28","1980-03-26","1946-09-26","1946-09-28","1946-09-23","1940-03-11","1976-03-01","1953-10-12","1980-03-26","1946-09-10","1951-12-11","1949-10-25","1953-10-12","1953-10-13","1980-03-25","1972-12-19","1969-01-25","1946-09-10","1950-06-12","1968-07-18","1966-06-23","1949-10-07","1949-07-05","1953-10-12","1980-03-24","1949-10-25","1948-04-26","1946-04-12","1946-09-11","1977-03-01","1977-02-16","1946-09-28","1949-10-25","1946-09-26","1946-09-23","1968-07-18","1946-09-10","1953-10-13","1977-03-23","1977-02-18","1977-03-11"],["1953-09-23","1977-08-31","1990-11-08","1953-10-06","1977-08-29","1953-10-06","1977-10-05","1952-07-04","1977-02-11","1946-12-03","1979-05-23","1967-11-29","2004-12-14","1977-04-21","1952-09-23","1980-09-11","1953-09-23","1953-10-06","1953-10-06","1995-12-13","1977-03-15","1979-05-30","1980-09-10","1953-09-23","1977-08-29","1951-09-30","1977-03-09","1977-08-30","1980-09-10","1977-09-20","1981-05-01","1953-10-06","1951-09-30","1969-06-17","1969-06-18","1950-09-12","1972-05-23","1979-05-29","1980-09-09","1951-09-30","1976-05-07","1964-11-01","1953-09-23","1977-10-05","1977-02-16","1953-10-06","1951-09-30","1953-09-23","1953-10-06","1969-06-19","1953-09-23","1977-08-31","1977-09-21","1977-08-30","1977-08-01"],[10,7,152,13,9,10,2,8,1,6,31,4,252,1,10,2,9,10,10,1086,44,26,2,10,9,14,6,7,2,61,44,11,13,5,15,3,86,32,2,19,144,20,10,2,1,10,16,9,10,21,11,7,2,2,2],["Campo V","Alserio","Orta o Cusio","Variola Medio","Annone Ovest","Paione Superiore","Pozzo Di Riva","Ledro","Garlate o Pescarenico","Como o Lario","Monate","Iseo o Sebino","Candia","Ganna","Agro","Avigliana o Piccolo di Avigliana o Trana","Variola Superiore","Ragozza","Paione Medio","Maggiore o Verbano","Pertusillo o Di Pietra Del Pertusillo","Comabbio","Avigliana o Grande di Avigliana","Campo IV","Annone Est o Oggiono","Silvaplana","Montorfano","Segrino","Sirio","Endine o Spinone","Idro o Eridio","Campo II","Sils","Vico o Cimino","Bolsena","Molveno","Garda o Benaco","Varese","Viverone o Dazelio","St. Moritz","Mergozzo","Lugano o Ceresio","Oriaccia","Mezzola","Olginate","Monscera","Campferersee","Variola Inferiore","Paione Inferiore","Bracciano o Sabatino","Campo III","Pusiano","Piano","Sartirana","Ghirla"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>start date<\/th>\n      <th>end date<\/th>\n      <th>n of zooplankton samples<\/th>\n      <th>Lake_Name<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":3},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
-<p>Summary table total number of phytoplankton samples containing in FIND, with start and end date of the series</p>
+<div id="htmlwidget-342d34fcab593258410c" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-342d34fcab593258410c">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55"],["1946-09-10","1953-10-13","1959-07-16","1946-09-26","1951-12-11","1946-09-23","1977-03-03","1949-07-05","1977-02-11","1946-05-25","1966-08-02","1967-05-16","1980-03-27","1977-04-21","1946-09-28","1980-03-26","1946-09-26","1946-09-28","1946-09-23","1940-03-11","1976-03-01","1953-10-12","1980-03-26","1946-09-10","1951-12-11","1949-10-25","1953-10-12","1953-10-13","1980-03-25","1972-12-19","1969-01-25","1946-09-10","1950-06-12","1968-07-18","1966-06-23","1949-10-07","1949-07-05","1953-10-12","1980-03-24","1949-10-25","1948-04-26","1946-04-12","1946-09-11","1977-03-01","1977-02-16","1946-09-28","1949-10-25","1946-09-26","1946-09-23","1968-07-18","1946-09-10","1953-10-13","1977-03-23","1977-02-18","1977-03-11"],["1953-09-23","1977-08-31","1990-11-08","1953-10-06","1977-08-29","1953-10-06","1977-10-05","1952-07-04","1977-02-11","1946-12-03","1979-05-23","1967-11-29","2004-12-14","1977-04-21","1952-09-23","1980-09-11","1953-09-23","1953-10-06","1953-10-06","1995-12-13","1977-03-15","1979-05-30","1980-09-10","1953-09-23","1977-08-29","1951-09-30","1977-03-09","1977-08-30","1980-09-10","1977-09-20","1981-05-01","1953-10-06","1951-09-30","1969-06-17","1969-06-18","1950-09-12","1972-05-23","1979-05-29","1980-09-09","1951-09-30","1976-05-07","1964-11-01","1953-09-23","1977-10-05","1977-02-16","1953-10-06","1951-09-30","1953-09-23","1953-10-06","1969-06-19","1953-09-23","1977-08-31","1977-09-21","1977-08-30","1977-08-01"],[10,7,152,13,9,10,2,8,1,6,31,4,252,1,10,2,9,10,10,1086,44,26,2,10,9,14,6,7,2,61,44,11,13,5,15,3,86,32,2,19,144,20,10,2,1,10,16,9,10,21,11,7,2,2,2],["Campo V","Alserio","Orta o Cusio","Variola Medio","Annone Ovest","Paione Superiore","Pozzo Di Riva","Ledro","Garlate o Pescarenico","Como o Lario","Monate","Iseo o Sebino","Candia","Ganna","Agro","Avigliana o Piccolo di Avigliana o Trana","Variola Superiore","Ragozza","Paione Medio","Maggiore o Verbano","Pertusillo o Di Pietra Del Pertusillo","Comabbio","Avigliana o Grande di Avigliana","Campo IV","Annone Est o Oggiono","Silvaplana","Montorfano","Segrino","Sirio","Endine o Spinone","Idro o Eridio","Campo II","Sils","Vico o Cimino","Bolsena","Molveno","Garda o Benaco","Varese","Viverone o Dazelio","St. Moritz","Mergozzo","Lugano o Ceresio","Oriaccia","Mezzola","Olginate","Monscera","Campferersee","Variola Inferiore","Paione Inferiore","Bracciano o Sabatino","Campo III","Pusiano","Piano","Sartirana","Ghirla"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>start date<\/th>\n      <th>end date<\/th>\n      <th>n of zooplankton samples<\/th>\n      <th>Lake_Name<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":3},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="total-number-of-phytoplankton-samples-containing-in-find-with-start-and-end-date-of-the-series" class="section level3">
+<h3>Total number of phytoplankton samples containing in FIND, with start and end date of the series</h3>
 <pre class="r"><code>DBI::dbGetQuery(con, &quot;SET NAMES &#39;utf8&#39;&quot;)</code></pre>
 <pre><code>## data frame with 0 columns and 0 rows</code></pre>
 <pre class="r"><code>queryValuePhy &lt;- DBI::dbSendQuery(conn = con, statement = paste(
@@ -4158,9 +4163,11 @@ GROUP BY
   l.\&quot;Lake_Name\&quot;&quot;));
 tblValuePhy &lt;- DBI::fetch(queryValuePhy, n = -1)
 DT::datatable(tblValuePhy)</code></pre>
-<div id="htmlwidget-3da15f9cc9aee9de40ba" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-3da15f9cc9aee9de40ba">{"x":{"filter":"none","data":[["1","2","3","4","5"],["2002-02-12","1986-03-06","2002-05-16","1995-01-18","2006-03-20"],["2002-12-09","2006-07-25","2002-12-19","2006-06-22","2006-06-20"],[41,710,21,397,43],["Alserio","Candia","Ganna","Maggiore o Verbano","Viverone o Dazelio"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>start date<\/th>\n      <th>end date<\/th>\n      <th>n of phytoplankton samples<\/th>\n      <th>Lake_Name<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":3},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
-<p>Summary table total number of benthos samples containing in FIND, with start and end date of the series</p>
+<div id="htmlwidget-18d84088c9500ded6bf4" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-18d84088c9500ded6bf4">{"x":{"filter":"none","data":[["1","2","3","4","5"],["2002-02-12","1986-03-06","2002-05-16","1995-01-18","2006-03-20"],["2002-12-09","2006-07-25","2002-12-19","2006-06-22","2006-06-20"],[41,710,21,397,43],["Alserio","Candia","Ganna","Maggiore o Verbano","Viverone o Dazelio"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>start date<\/th>\n      <th>end date<\/th>\n      <th>n of phytoplankton samples<\/th>\n      <th>Lake_Name<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":3},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="total-number-of-benthos-samples-containing-in-find-with-start-and-end-date-of-the-series" class="section level3">
+<h3>Total number of benthos samples containing in FIND, with start and end date of the series</h3>
 <pre class="sql"><code>SELECT 
   MIN (s.&quot;Sample_Data&quot;) AS &quot;start date&quot;,
   MAX (s.&quot;Sample_Data&quot;) AS &quot;end date&quot;,
@@ -4174,7 +4181,9 @@ WHERE
 GROUP BY
   l.&quot;Lake_Name&quot;</code></pre>
 <p><strong>0 ROWS for benthos</strong></p>
-<p>Summary table total number of chemistry samples containing in FIND, with start and end date of the series</p>
+</div>
+<div id="total-number-of-chemistry-samples-containing-in-find-with-start-and-end-date-of-the-series" class="section level3">
+<h3>Total number of chemistry samples containing in FIND, with start and end date of the series</h3>
 <pre class="sql"><code>SELECT 
   MIN (s.&quot;Sample_Data&quot;) AS &quot;start date&quot;,
   MAX (s.&quot;Sample_Data&quot;) AS &quot;end date&quot;,
@@ -4188,7 +4197,9 @@ WHERE
 GROUP BY
   l.&quot;Lake_Name&quot;</code></pre>
 <p><strong>0 ROWS for chemistry</strong></p>
-<p>Summary table total number of macrophytes samples containing in FIND, with start and end date of the series</p>
+</div>
+<div id="total-number-of-macrophytes-samples-containing-in-find-with-start-and-end-date-of-the-series" class="section level3">
+<h3>Total number of macrophytes samples containing in FIND, with start and end date of the series</h3>
 <pre class="sql"><code>SELECT 
   MIN (s.&quot;Sample_Data&quot;) AS &quot;start date&quot;,
   MAX (s.&quot;Sample_Data&quot;) AS &quot;end date&quot;,
@@ -4202,6 +4213,7 @@ WHERE
 GROUP BY
   l.&quot;Lake_Name&quot;</code></pre>
 <p><strong>0 ROWS for chemistry</strong></p>
+</div>
 
 
 

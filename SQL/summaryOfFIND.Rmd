@@ -35,7 +35,7 @@ DBI::dbGetInfo(drv)
 summary(con)
 ```
 
-List of all tables in DB
+### List of all tables in DB
 ```{r}
 DBI::dbListTables(con)
 ```
@@ -46,7 +46,7 @@ Submits one statement to the database
 DBI::dbGetQuery(con, "SET NAMES 'utf8'")
 ```
 
-Summary table total number of fish samples containing in FIND, with start and end date of the series
+### Total number of fish samples containing in FIND, with start and end date of the series
 ```{r}
 DBI::dbGetQuery(con, "SET NAMES 'utf8'")
 queryValueItt <- DBI::dbSendQuery(conn = con, statement = paste(
@@ -87,7 +87,7 @@ tblValueZoo <- DBI::fetch(queryValueZoo, n = -1)
 DT::datatable(tblValueZoo)
 ```
 
-Summary table total number of phytoplankton samples containing in FIND, with start and end date of the series
+### Total number of phytoplankton samples containing in FIND, with start and end date of the series
 ```{r}
 DBI::dbGetQuery(con, "SET NAMES 'utf8'")
 queryValuePhy <- DBI::dbSendQuery(conn = con, statement = paste(
@@ -107,7 +107,7 @@ tblValuePhy <- DBI::fetch(queryValuePhy, n = -1)
 DT::datatable(tblValuePhy)
 ```
 
-Summary table total number of benthos samples containing in FIND, with start and end date of the series
+### Total number of benthos samples containing in FIND, with start and end date of the series
 ```{sql connection=con}
 SELECT 
   MIN (s."Sample_Data") AS "start date",
@@ -124,7 +124,7 @@ GROUP BY
 ```
 **0 ROWS for benthos**
 
-Summary table total number of chemistry samples containing in FIND, with start and end date of the series
+### Total number of chemistry samples containing in FIND, with start and end date of the series
 ```{sql connection=con}
 SELECT 
   MIN (s."Sample_Data") AS "start date",
@@ -141,7 +141,7 @@ GROUP BY
 ```
 **0 ROWS for chemistry**
 
-Summary table total number of macrophytes samples containing in FIND, with start and end date of the series
+### Total number of macrophytes samples containing in FIND, with start and end date of the series
 ```{sql connection=con}
 SELECT 
   MIN (s."Sample_Data") AS "start date",

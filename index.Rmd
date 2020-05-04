@@ -1,0 +1,12 @@
+---
+---
+
+## Introduction
+
+This is a repository for R scripts performed on the FIND database.
+Freshwater ItaliaN Database (FIND) is a PostgreSQL DBMS made to store limnological data.
+
+## DB in action
+
+1. [Summary of the tables and data contained in FIND](./SQL/summaryOfFIND.html)
+2. ...

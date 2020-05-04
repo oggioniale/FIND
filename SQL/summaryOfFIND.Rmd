@@ -1,10 +1,17 @@
 ---
-title: "R Notebook"
-output: html_notebook
+title: "Some summury of FIND DB"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 5
+    toc_float: true
+    theme: flatly
+author: "Alessandro Oggioni - 01 May 2020"
 ---
 
 Instantiates the driver object
 ```{r}
+library("RPostgreSQL")
 drv <- DBI::dbDriver("PostgreSQL")
 ```
 
@@ -40,66 +47,72 @@ DBI::dbGetQuery(con, "SET NAMES 'utf8'")
 ```
 
 Summary table total number of fish samples containing in FIND, with start and end date of the series
-```{sql connection=con}
-SELECT 
-  MIN (s."Sample_Data") AS "start date",
-  MAX (s."Sample_Data") AS "end date",
-  COUNT (s."ITT") AS "n of fish samples",
-  /*COUNT (s."ZOO) AS "n of zooplankton samples",
-  COUNT (s."PHY) AS "n of phytoplankton samples",
-  -- COUNT (s."COM) AS "n of ",
-  COUNT (s."BEN) AS "n of benthos samples",
-  COUNT (s."CHI) AS "n of chemistry samples",
-  COUNT (s."MACRO) AS "n of macrophytes samples",
-  -- COUNT (s."MICRO) AS "n of samples of ",*/
-  l."Lake_Name"
+```{r}
+DBI::dbGetQuery(con, "SET NAMES 'utf8'")
+queryValueItt <- DBI::dbSendQuery(conn = con, statement = paste(
+"SELECT 
+  MIN (s.\"Sample_Data\") AS \"start date\",
+  MAX (s.\"Sample_Data\") AS \"end date\",
+  COUNT (s.\"ITT\") AS \"n of fish samples\",
+  l.\"Lake_Name\"
 FROM
-  public."COM_Samples" AS s
-  INNER JOIN public."COM_Lakes" AS l ON (s."ID_Lake" = l."ID_Lake")
+  public.\"COM_Samples\" AS s
+  INNER JOIN public.\"COM_Lakes\" AS l ON (s.\"ID_Lake\" = l.\"ID_Lake\")
 WHERE
-  s."ITT" = 1
+  s.\"ITT\" = 1
 GROUP BY
-  l."Lake_Name"
+  l.\"Lake_Name\""));
+tblValueItt <- DBI::fetch(queryValueItt, n = -1)
+DT::datatable(tblValueItt)
 ```
 
 Summary table total number of zooplankton samples containing in FIND, with start and end date of the series
-```{sql connection=con}
-SELECT 
-  MIN (s."Sample_Data") AS "start date",
-  MAX (s."Sample_Data") AS "end date",
-  COUNT (s."ZOO") AS "n of zooplankton samples",
-  l."Lake_Name"
+```{r}
+DBI::dbGetQuery(con, "SET NAMES 'utf8'")
+queryValueZoo <- DBI::dbSendQuery(conn = con, statement = paste(
+"SELECT 
+  MIN (s.\"Sample_Data\") AS \"start date\",
+  MAX (s.\"Sample_Data\") AS \"end date\",
+  COUNT (s.\"ZOO\") AS \"n of zooplankton samples\",
+  l.\"Lake_Name\"
 FROM
-  public."COM_Samples" AS s
-  INNER JOIN public."COM_Lakes" AS l ON (s."ID_Lake" = l."ID_Lake")
+  public.\"COM_Samples\" AS s
+  INNER JOIN public.\"COM_Lakes\" AS l ON (s.\"ID_Lake\" = l.\"ID_Lake\")
 WHERE
-  s."ZOO" = 1
+  s.\"ZOO\" = 1
 GROUP BY
-  l."Lake_Name"
+  l.\"Lake_Name\""
+));
+tblValueZoo <- DBI::fetch(queryValueZoo, n = -1)
+DT::datatable(tblValueZoo)
 ```
 
-Summary table total number of zooplankton samples containing in FIND, with start and end date of the series
-```{sql connection=con}
-SELECT 
-  MIN (s."Sample_Data") AS "start date",
-  MAX (s."Sample_Data") AS "end date",
-  COUNT (s."PHY") AS "n of phytoplankton samples",
-  l."Lake_Name"
+Summary table total number of phytoplankton samples containing in FIND, with start and end date of the series
+```{r}
+DBI::dbGetQuery(con, "SET NAMES 'utf8'")
+queryValuePhy <- DBI::dbSendQuery(conn = con, statement = paste(
+"SELECT 
+  MIN (s.\"Sample_Data\") AS \"start date\",
+  MAX (s.\"Sample_Data\") AS \"end date\",
+  COUNT (s.\"PHY\") AS \"n of phytoplankton samples\",
+  l.\"Lake_Name\"
 FROM
-  public."COM_Samples" AS s
-  INNER JOIN public."COM_Lakes" AS l ON (s."ID_Lake" = l."ID_Lake")
+  public.\"COM_Samples\" AS s
+  INNER JOIN public.\"COM_Lakes\" AS l ON (s.\"ID_Lake\" = l.\"ID_Lake\")
 WHERE
-  s."PHY" = 1
+  s.\"PHY\" = 1
 GROUP BY
-  l."Lake_Name"
+  l.\"Lake_Name\""));
+tblValuePhy <- DBI::fetch(queryValuePhy, n = -1)
+DT::datatable(tblValuePhy)
 ```
 
-Summary table total number of zooplankton samples containing in FIND, with start and end date of the series
+Summary table total number of benthos samples containing in FIND, with start and end date of the series
 ```{sql connection=con}
 SELECT 
   MIN (s."Sample_Data") AS "start date",
   MAX (s."Sample_Data") AS "end date",
-  COUNT (s."BEN") AS "n of benthos samples",
+  COUNT (s."BEN") AS "n of chemistry samples",
   l."Lake_Name"
 FROM
   public."COM_Samples" AS s
@@ -109,8 +122,9 @@ WHERE
 GROUP BY
   l."Lake_Name"
 ```
+**0 ROWS for benthos**
 
-Summary table total number of zooplankton samples containing in FIND, with start and end date of the series
+Summary table total number of chemistry samples containing in FIND, with start and end date of the series
 ```{sql connection=con}
 SELECT 
   MIN (s."Sample_Data") AS "start date",
@@ -125,8 +139,9 @@ WHERE
 GROUP BY
   l."Lake_Name"
 ```
+**0 ROWS for chemistry**
 
-Summary table total number of zooplankton samples containing in FIND, with start and end date of the series
+Summary table total number of macrophytes samples containing in FIND, with start and end date of the series
 ```{sql connection=con}
 SELECT 
   MIN (s."Sample_Data") AS "start date",
@@ -141,3 +156,4 @@ WHERE
 GROUP BY
   l."Lake_Name"
 ```
+**0 ROWS for chemistry**
